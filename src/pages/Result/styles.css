@@ -18,5 +18,12 @@
 }
 
 .box-result{
-  min-height: 400px;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.result-text-container{
+  display: flex;
+  margin-bottom: 20px;
 }

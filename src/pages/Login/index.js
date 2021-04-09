@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 import * as singnInActions from '../../store/actions/signin'
 import { ToastContainer, toast } from 'react-toastify';
 
-import {API} from '../../services/api';
+import { API } from '../../services/api';
 
 import './styles.css'
 
@@ -15,9 +15,9 @@ const Login = (props) => {
   const [pass, setPassword] = useState('');
   const [loading, setLoading] = useState(false)
 
-  async function handleAuth(){
+  async function handleAuth() {
     setLoading(true)
-    API.post('/api/auth', {email: mail, password: pass})
+    await API.post('/api/auth', { email: mail, password: pass })
       .then((item) => {
         setLoading(false);
         props.signIn(item.data.access_token);
@@ -30,20 +30,19 @@ const Login = (props) => {
       });
   };
 
-
   return (
     <>
-    <div className="container-login">
-      <Grid sm={3} xs={11} className="grid-login">
-        <Avatar className="avatar-login"></Avatar>
-        <TextField onChange={(e) => setMail(e.target.value)} id="outlined-basic" className="input-login" label="E-mail" variant="outlined" type="email" />
-        <TextField onChange={(e) => setPassword(e.target.value)} id="outlined-basic" className="input-login" label="Senha" variant="outlined" type="password" />
-        <Button onClick={handleAuth} variant="contained" color="primary" className="button-login" disableElevation>
-          {loading == true ? <CircularProgress color="white" style={{width: '25px', height: '25px', padding: '5px'}}/> : 'Login'}
-        </Button>
-        <ToastContainer />
-      </Grid>
-    </div>
+      <div className="container-login">
+        <Grid sm={3} xs={11} className="grid-login">
+          <Avatar className="avatar-login"></Avatar>
+          <TextField onChange={(e) => setMail(e.target.value)} className="input-login" label="E-mail" variant="outlined" type="email" />
+          <TextField onChange={(e) => setPassword(e.target.value)} className="input-login" label="Senha" variant="outlined" type="password" />
+          <Button onClick={handleAuth} variant="contained" color="primary" className="button-login" disableElevation>
+            {loading == true ? <CircularProgress style={{ color: '#fff', width: '25px', height: '25px', padding: '5px' }} /> : 'Login'}
+          </Button>
+          <ToastContainer />
+        </Grid>
+      </div>
     </>
   )
 }

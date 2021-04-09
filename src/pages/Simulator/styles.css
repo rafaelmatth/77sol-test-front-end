@@ -1,27 +1,27 @@
-.container-simulator{
+.container-simulator {
   display: flex;
   width: 100%;
   height: 100vh;
   justify-content: center;
 }
 
-.grid-form-simulator{
+.grid-form-simulator {
   display: flex;
-  flex-direction: column
+  flex-direction: column;
 }
 
-.grid-simulator{
+.grid-simulator {
   margin-top: 5%;
 }
 
-.title{
-  text-align: left; 
-  color: #7c7c7c; 
-  font-size: 30px; 
-  font-weight: 500; 
-  margin-bottom: 50px
+.title {
+  text-align: left;
+  color: #7c7c7c;
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 50px;
 }
 
-.input-simulator{
+.input-simulator {
   margin-bottom: 30px !important;
 }
