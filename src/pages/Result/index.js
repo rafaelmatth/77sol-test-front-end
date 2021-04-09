@@ -1,12 +1,11 @@
 import React from 'react'
-import { Grid, Box, Paper } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import { Grid, Box, Paper, Divider } from '@material-ui/core'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
 
 import './styles.css'
 
@@ -14,10 +13,12 @@ const Result = (props) => {
   const resultData = props.location.resultData
   const economy = resultData.economia
   const potential = resultData.potencial
+  const companies = resultData.integradores_regiao
+  const maxCompanies = resultData.integradores_maximo
 
   function capitalize(s) {
     const sLow = s.toLowerCase()
-    return sLow[0].toUpperCase() + sLow.slice(1);
+    return sLow[0].toUpperCase() + sLow.slice(1)
   }
 
   function formatFloatNumber(number_value) {
@@ -31,14 +32,26 @@ const Result = (props) => {
         <p className="title">Resultado</p>
         <Box boxShadow={3} className="box-result">
           <div className="result-text-container">
-            <p className="text-result">Economia: </p>
+            <p className="title-content-result">Economia: </p>
             <p className="text-result">{economy}</p>
           </div>
+          <Divider />
           <div className="result-text-container">
-            <p className="text-result">Potencial: </p>
+            <p className="title-content-result">Potencial: </p>
             <p className="text-result">{capitalize(potential)}</p>
           </div>
-
+          <Divider />
+          <div className="result-text-container">
+            <p className="title-content-result">Qtd. Empresas parceiras: </p>
+            <p className="text-result">{companies}</p>
+          </div>
+          <Divider />
+          <div className="result-text-container">
+            <p className="title-content-result">Qtd. Empresas parceiras (Espaço mais abrangente): </p>
+            <p className="text-result">{maxCompanies}</p>
+          </div>
+          <Divider />
+          <p className="title-table">Parcelas: </p>
           <TableContainer component={Paper}>
             <Table size="small" aria-label="a dense table">
               <TableHead>

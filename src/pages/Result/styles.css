@@ -24,6 +24,23 @@
 }
 
 .result-text-container{
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: flex;
-  margin-bottom: 20px;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.title-content-result{
+  font-size: 20px;  
+}
+.text-result{
+  font-size: 18px;
+  color: #333;
+}
+.title-table{
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { TextField, Button, Grid, CircularProgress } from '@material-ui/core';
-import InputMask from 'react-input-mask';
-import { useHistory } from "react-router-dom";
+import { TextField, Button, Grid, CircularProgress } from '@material-ui/core'
+import InputMask from 'react-input-mask'
+import { useHistory } from "react-router-dom"
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -9,14 +9,14 @@ import * as singnInActions from '../../store/actions/signin'
 
 import './styles.css'
 
-import { API } from '../../services/api';
+import { API } from '../../services/api'
 
 const Simulator = (props) => {
-  let history = useHistory();
+  let history = useHistory()
 
-  const [zipocode, setZipcode] = useState('');
+  const [zipocode, setZipcode] = useState('')
   const [value, setValue] = useState('');
-  const [roofType, setRoofType] = useState('');
+  const [roofType, setRoofType] = useState('')
   const [loading, setLoading] = useState(false)
 
   const dataPost = {
@@ -52,7 +52,7 @@ const Simulator = (props) => {
           <TextField onChange={(e) => setValue(e.target.value)} className="input-simulator" label="Valor da conta" variant="outlined" type="number" />
           <TextField onChange={(e) => setRoofType(e.target.value)} className="input-simulator" label="Tipo do telhado" variant="outlined" type="text" />
           <Button onClick={handleSimulation} variant="contained" color="primary" className="button-login" disableElevation>
-            {loading == true ? <CircularProgress style={{color: '#fff', width: '25px', height: '25px', padding: '5px' }} /> : 'Simular'}
+            {loading === true ? <CircularProgress style={{color: '#fff', width: '25px', height: '25px', padding: '5px' }} /> : 'Simular'}
           </Button>
         </Grid>
       </Grid>
@@ -65,6 +65,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(singnInActions, dispatch);
+  bindActionCreators(singnInActions, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Simulator);
+export default connect(mapStateToProps, mapDispatchToProps)(Simulator)
