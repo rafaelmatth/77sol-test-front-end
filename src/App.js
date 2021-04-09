@@ -1,11 +1,15 @@
-import Login from './pages/Login'
-import Simulator from './pages/Simulator'
-import Result from './pages/Result'
+import { Provider } from "react-redux";
+import Routes from './routes';
+import store from './store'
+import 'react-toastify/dist/ReactToastify.css';
+
 import './App.css'
 function App() {
   return (
     <div className="App">
-      <Login />
+      <Provider store={store}>
+          <Routes />
+      </Provider>
     </div>
   );
 }

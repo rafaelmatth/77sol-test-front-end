@@ -1,19 +1,58 @@
-import React from 'react'
-import { TextField, Avatar, Button, Grid } from '@material-ui/core';
+import React, { useState } from 'react'
+import { TextField, Avatar, Button, Grid, CircularProgress } from '@material-ui/core';
+
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as singnInActions from '../../store/actions/signin'
+import { ToastContainer, toast } from 'react-toastify';
+
+import {API} from '../../services/api';
 
 import './styles.css'
 
-const Login = () => {
+const Login = (props) => {
+  const [mail, setMail] = useState('');
+  const [pass, setPassword] = useState('');
+  const [loading, setLoading] = useState(false)
+
+  async function handleAuth(){
+    setLoading(true)
+    API.post('/api/auth', {email: mail, password: pass})
+      .then((item) => {
+        setLoading(false);
+        props.signIn(item.data.access_token);
+      })
+      .catch((item) => {
+        setLoading(false)
+        toast.error("Credenciais Inválidas",{
+          autoClose: 2500
+        });
+      });
+  };
+
+
   return (
+    <>
     <div className="container-login">
       <Grid sm={3} xs={11} className="grid-login">
         <Avatar className="avatar-login"></Avatar>
-        <TextField id="outlined-basic" className="input-login" label="E-mail" variant="outlined" type="email" />
-        <TextField id="outlined-basic" className="input-login" label="Senha" variant="outlined" type="email" />
-        <Button variant="contained" color="primary" className="button-login" disableElevation>Login</Button>
+        <TextField onChange={(e) => setMail(e.target.value)} id="outlined-basic" className="input-login" label="E-mail" variant="outlined" type="email" />
+        <TextField onChange={(e) => setPassword(e.target.value)} id="outlined-basic" className="input-login" label="Senha" variant="outlined" type="password" />
+        <Button onClick={handleAuth} variant="contained" color="primary" className="button-login" disableElevation>
+          {loading == true ? <CircularProgress color="white" style={{width: '25px', height: '25px', padding: '5px'}}/> : 'Login'}
+        </Button>
+        <ToastContainer />
       </Grid>
     </div>
+    </>
   )
 }
 
-export default Login
+const mapStateToProps = state => ({
+  signin: state.signin,
+})
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(singnInActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
