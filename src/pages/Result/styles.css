@@ -1,0 +1,22 @@
+.container-result{
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  height: 100vh
+}
+
+.grid-result{
+  margin-top: 5%;
+}
+
+.title{
+  text-align: left;
+  color: #7c7c7c;
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 50px
+}
+
+.box-result{
+  min-height: 400px;
+}
