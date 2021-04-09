@@ -5,12 +5,15 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as singnInActions from '../../store/actions/signin'
 import { ToastContainer, toast } from 'react-toastify';
+import { useHistory } from "react-router-dom";
 
 import { API } from '../../services/api';
 
 import './styles.css'
 
 const Login = (props) => {
+  let history = useHistory();
+
   const [mail, setMail] = useState('');
   const [pass, setPassword] = useState('');
   const [loading, setLoading] = useState(false)
@@ -21,10 +24,13 @@ const Login = (props) => {
       .then((item) => {
         setLoading(false);
         props.signIn(item.data.access_token);
+        history.push({
+          pathname: '/simulator',
+        });
       })
       .catch((item) => {
         setLoading(false)
-        toast.error("Credenciais Inválidas",{
+        toast.error("Credenciais Inválidas", {
           autoClose: 2500
         });
       });
